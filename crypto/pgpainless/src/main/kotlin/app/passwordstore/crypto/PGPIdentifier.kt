@@ -58,6 +58,8 @@ public sealed class PGPIdentifier {
     @Suppress("ReturnCount")
     public fun fromString(identifier: String): PGPIdentifier? {
       if (identifier.isEmpty()) return null
+      identifier = identifier.substringBefore('#').trimEnd()
+
       // Match long key IDs:
       // FF22334455667788 or 0xFF22334455667788
       val maybeLongKeyId =
