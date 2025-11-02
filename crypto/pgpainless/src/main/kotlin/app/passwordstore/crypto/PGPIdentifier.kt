@@ -62,7 +62,9 @@ public sealed class PGPIdentifier {
       // Match long key IDs:
       // FF22334455667788 or 0xFF22334455667788
       val maybeLongKeyId =
-        identifier.removePrefix("0x").substringBefore("#").trimEnd().takeIf { it.matches("[a-fA-F\\d]{16}".toRegex()) }
+        identifier.removePrefix("0x").substringBefore("#").trimEnd().takeIf {
+          it.matches("[a-fA-F\\d]{16}".toRegex())
+        }
       if (maybeLongKeyId != null) {
         val keyId = maybeLongKeyId.toULong(HEX_RADIX)
         return KeyId(keyId.toLong())
